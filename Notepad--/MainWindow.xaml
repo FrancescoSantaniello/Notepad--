@@ -1,0 +1,103 @@
+﻿<Window x:Class="Notepad__.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="Notepad--" Height="600" Width="900"
+        PreviewKeyDown="MainWindow_KeyDown"
+        PreviewMouseWheel="MainWindow_MouseWheel"
+        >
+    <DockPanel>
+        <Menu DockPanel.Dock="Top" FontFamily="Cascadia" FontSize="16" >
+            <MenuItem Header="_File">
+                <MenuItem x:Name="buttonNuovoFile" Header="Nuovo File" InputGestureText="Ctrl+N" Click="buttonNuovoFile_Click"/>
+                <MenuItem x:Name="buttonNuovaFinestra" Header="Nuova Finestra" InputGestureText="Ctrl+MAIUSC+N" Click="buttonNuovaFinestra_Click"/>
+                <MenuItem x:Name="buttonApri" Header="Apri" InputGestureText="Ctrl+F12" Click="buttonApri_Click" />
+                <MenuItem x:Name="buttonSalva" Header="Salva" InputGestureText="Ctrl+S" Click="buttonSalva_Click" />
+                <MenuItem x:Name="buttonSalvaConNome" Header="Salva con nome" InputGestureText="Ctrl+MAIUSC+S" Click="buttonSalvaConNome_Click" />
+
+                <Separator/>
+
+                <MenuItem x:Name="buttonEsci" Header="Esci" InputGestureText="ALT+F4" Click="buttonEsci_Click"/>
+            </MenuItem>
+
+            <MenuItem Header="_Modifica">
+                <MenuItem x:Name="buttonCercaConGoogle" Header="Cerca con Google" InputGestureText="CTRL+E" Click="buttonCercaConGoogle_Click"/>
+
+                <Separator/>
+
+                <MenuItem x:Name="buttonSelezionaTutto" Header="Seleziona tutto" InputGestureText="CTRL+A" Click="buttonSelezionaTutto_Click"/>
+                <MenuItem x:Name="buttonDataOra" Header="Data e Ora" InputGestureText="F5" Click="buttonDataOra_Click"/>
+            </MenuItem>
+
+            <MenuItem Header="_Codifica">
+                <RadioButton x:Name="radioButtonASCII" Content="ASCII" Checked="radioButtonASCII_Checked"/>
+                <RadioButton x:Name="radioButtonUTF8" Content="UTF-8" IsChecked="True" Checked="radioButtonUTF8_Checked" />
+                <RadioButton x:Name="radioButtonUTF32" Content="UTF-32" Checked="radioButtonUTF32_Checked"/>
+                <RadioButton x:Name="radioButtonUnicode" Content="Unicode" Checked="radioButtonUnicode_Checked"/>
+            </MenuItem>
+
+            <MenuItem Header="_Visualizza" >
+
+                <MenuItem Header="Zoom">
+                    <MenuItem x:Name="buttonZoomAvanti" InputGestureText="Ctrl+segno più" Header="Zoom avanti" Click="buttonZoomAvanti_Click"/>
+                    <MenuItem x:Name="buttonZoomIndietro" InputGestureText="Ctrl+segno meno" Header="Zoom indietro" Click="buttonZoomIndietro_Click"/>
+                    <MenuItem x:Name="buttonZoomRestore" InputGestureText="Ctrl+0" Header="Rispirina zoom predefinito" Click="buttonZoomRestore_Click"/>
+                </MenuItem>
+
+                <CheckBox x:Name="checkBoxStatusBar" IsChecked="True" Content="Visualizza barra di stato" Checked="checkBoxStatusBar_Checked" Unchecked="checkBoxStatusBar_Unchecked"/>
+            </MenuItem>
+
+            <MenuItem x:Name="menuItemEsegui" Header="_Esegui">
+                <MenuItem x:Name="buttonPromptDeiComandi" Header="Prompt dei Comandi" InputGestureText="Ctrl+T" Click="buttonPromptDeiComandi_Click" />
+                <MenuItem x:Name="buttonPowerShell" Header="PowerShell" InputGestureText="Ctrl+MAIUSC+T" Click="buttonPowerShell_Click" />
+                <MenuItem x:Name="buttonEsegui" Header="Esegui" InputGestureText="Ctrl+R" Click="buttonEsegui_Click"/>
+                <Separator/>
+            </MenuItem>
+
+            <TextBlock x:Name="labelTime" HorizontalAlignment="Left"/>
+        </Menu>
+
+        <StatusBar DockPanel.Dock="Bottom" x:Name="statusBar">
+            <StatusBarItem HorizontalAlignment="Right">
+                <TextBlock Text="UTF-8" x:Name="labelCodifica"/>
+            </StatusBarItem>
+
+            <Separator/>
+
+            <StatusBarItem HorizontalAlignment="Right">
+                <TextBlock Text="Windows (CRLF)"/>
+            </StatusBarItem>
+
+            <Separator/>
+
+            <StatusBarItem HorizontalAlignment="Right">
+                <TextBlock x:Name="labelZoom" Text="100%"/>
+            </StatusBarItem>
+        </StatusBar>
+
+        <Grid>
+
+            <avalonEdit:TextEditor
+                            xmlns:avalonEdit="http://icsharpcode.net/sharpdevelop/avalonedit"
+                            x:Name="textBox"
+                            HorizontalScrollBarVisibility="Auto"
+                            VerticalScrollBarVisibility="Auto"
+                            FontFamily="Consolas"
+                            FontSize="16"
+                            AllowDrop="True"
+                            DragEnter="textBox_DragEnter"
+                            DragOver="textBox_DragOver"
+                            Drop="textBox_Drop"
+                            PreviewDragOver="textBox_PreviewDragOver"
+                            TextChanged="textBox_TextChanged"
+                            KeyDown="textBox_KeyDown"
+                            Padding="2"
+                            ShowLineNumbers="True"
+                />
+
+
+        </Grid>
+    </DockPanel>
+</Window>
